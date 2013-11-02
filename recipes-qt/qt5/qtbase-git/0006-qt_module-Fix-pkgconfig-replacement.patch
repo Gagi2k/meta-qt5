@@ -1,7 +1,7 @@
-From 5168edad24f2c27061286707603bc2126365bcb2 Mon Sep 17 00:00:00 2001
+From f934787114362d19cb3ddff40dd6b254eea2d4ca Mon Sep 17 00:00:00 2001
 From: Martin Jansa <Martin.Jansa@gmail.com>
 Date: Sat, 27 Apr 2013 23:15:37 +0200
-Subject: [PATCH 08/23] qt_module: Fix pkgconfig replacement
+Subject: [PATCH 06/20] qt_module: Fix pkgconfig replacement
 
 * in situation like this:
   QT_SYSROOT:/OE/oe-core/tmp-eglibc/sysroots/qemuarm
@@ -27,10 +27,10 @@ Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
  1 file changed, 16 insertions(+), 4 deletions(-)
 
 diff --git a/mkspecs/features/qt_module.prf b/mkspecs/features/qt_module.prf
-index 7f7de85..7741b96 100644
+index b614112..1c7ed39 100644
 --- a/mkspecs/features/qt_module.prf
 +++ b/mkspecs/features/qt_module.prf
-@@ -140,18 +140,30 @@ unix|win32-g++* {
+@@ -141,18 +141,30 @@ unix|win32-g++* {
        rplbase = $$dirname(_QMAKE_SUPER_CACHE_)/[^/][^/]*
     else: \
        rplbase = $$MODULE_BASE_OUTDIR
@@ -66,5 +66,5 @@ index 7f7de85..7741b96 100644
  
  unix|win32-g++* {
 -- 
-1.8.3.2
+1.8.4.2
 
