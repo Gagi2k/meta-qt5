@@ -14,3 +14,7 @@ FILES_${PN}-qmlplugins += " \
     ${OE_QMAKE_PATH_QML}/*/*/*.bez \
     ${OE_QMAKE_PATH_QML}/*/*/*.obj \
 "
+
+ALTERNATIVE_qt3d-tools = "qglinfo"
+ALTERNATIVE_TARGET[qglinfo] = "${OE_QMAKE_PATH_BINS}/qglinfo"
+

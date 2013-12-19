@@ -123,6 +123,14 @@ PACKAGECONFIG[pulseaudio] = "-pulseaudio,-no-pulseaudio,pulseaudio"
 PACKAGECONFIG[nis] = "-nis,-no-nis"
 PACKAGECONFIG[widgets] = "-widgets,-no-widgets"
 
+ALTERNATIVE_qtbase-tools = "moc qdbuscpp2xml qdbusxml2cpp qdoc rcc uic"
+ALTERNATIVE_TARGET[moc] = "${OE_QMAKE_PATH_BINS}/moc"
+ALTERNATIVE_TARGET[qdbuscpp2xml] = "${OE_QMAKE_PATH_BINS}/qdbuscpp2xml"
+ALTERNATIVE_TARGET[qdbusxml2cpp] = "${OE_QMAKE_PATH_BINS}/qdbusxml2cpp"
+ALTERNATIVE_TARGET[qdoc] = "${OE_QMAKE_PATH_BINS}/qdoc"
+ALTERNATIVE_TARGET[rcc] = "${OE_QMAKE_PATH_BINS}/rcc"
+ALTERNATIVE_TARGET[uic] = "${OE_QMAKE_PATH_BINS}/uic"
+
 QT_CONFIG_FLAGS += " \
     -reduce-relocations \
     -shared \

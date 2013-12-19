@@ -2,6 +2,7 @@
 # Copyright (C) 2013 Martin Jansa <martin.jansa@gmail.com>
 
 inherit qmake5
+inherit update-alternatives
 
 # Qt5 is dependent on icu for localization
 ICU = "icu "
