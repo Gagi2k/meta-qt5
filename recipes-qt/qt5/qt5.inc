@@ -20,7 +20,7 @@ OE_QMAKE_PATH_SETTINGS = "${OE_QMAKE_PATH_QT_SETTINGS}"
 OE_QMAKE_PATH_EXAMPLES = "${OE_QMAKE_PATH_QT_EXAMPLES}"
 OE_QMAKE_PATH_TESTS = "${OE_QMAKE_PATH_QT_TESTS}"
 
-PACKAGES =. "${PN}-qmlplugins-dbg ${PN}-tools-dbg ${PN}-plugins-dbg ${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-mkspecs ${PN}-examples-dev ${PN}-examples-staticdev ${PN}-examples-dbg ${PN}-examples "
+PACKAGES =. "${PN}-qmlplugins-dbg ${PN}-tools-dbg ${PN}-plugins-dbg ${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-examples-dev ${PN}-examples-staticdev ${PN}-examples-dbg ${PN}-examples "
 
 # extra -dbg packages
 FILES_${PN}-qmlplugins-dbg = " \
@@ -80,9 +80,6 @@ FILES_${PN}-tools = " \
 FILES_${PN}-plugins = " \
     ${OE_QMAKE_PATH_PLUGINS}/*/*${SOLIBSDEV} \
 "
-FILES_${PN}-mkspecs = "\
-    ${OE_QMAKE_PATH_ARCHDATA}/mkspecs \
-"
 
 # modifications to normal packages
 FILES_${PN} += " \
@@ -97,6 +94,7 @@ FILES_${PN}-dev += " \
     ${OE_QMAKE_PATH_LIBS}/*.la \
     ${OE_QMAKE_PATH_DATA}/* \
     ${OE_QMAKE_PATH_HEADERS}/* \
+    ${OE_QMAKE_PATH_ARCHDATA}/mkspecs \
 "
 FILES_${PN}-dbg += " \
     ${OE_QMAKE_PATH_LIBS}/.debug \
