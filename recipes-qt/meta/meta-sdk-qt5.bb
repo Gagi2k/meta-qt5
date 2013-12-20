@@ -18,6 +18,9 @@ OE_QMAKE_PATH_SETTINGS = "${OE_QMAKE_PATH_QT_SETTINGS}"
 OE_QMAKE_PATH_EXAMPLES = "${OE_QMAKE_PATH_QT_EXAMPLES}"
 OE_QMAKE_PATH_TESTS = "${OE_QMAKE_PATH_QT_TESTS}"
 
+SHELLSCRIPTPATH := "${FILE_DIRNAME}/${PN}"
+QTCREATORSCRIPT = "qtCreatorConfig.sh"
+QTCREATORSCRIPTPATH = "${SDK_OUTPUT}/${SDKPATH}/${QTCREATORSCRIPT}"
 
 toolchain_create_sdk_env_script_append() {
     echo 'export OE_QMAKE_CFLAGS="$CFLAGS"' >> $script
@@ -33,6 +36,7 @@ toolchain_create_sdk_env_script_append() {
     echo 'export OE_QMAKE_UIC=${QT_TOOLS_PREFIX}/uic4' >> $script
     echo 'export OE_QMAKE_UIC3=${QT_TOOLS_PREFIX}/uic34' >> $script
     echo 'export OE_QMAKE_RCC=${QT_TOOLS_PREFIX}/rcc4' >> $script
+    echo 'export OE_QMAKE_QMAKE=${SDKPATHNATIVE}/${OE_QMAKE_PATH_QT_BINS}/qmake' >> $script
     echo 'export OE_QMAKE_QDBUSCPP2XML=${QT_TOOLS_PREFIX}/qdbuscpp2xml4' >> $script
     echo 'export OE_QMAKE_QDBUSXML2CPP=${QT_TOOLS_PREFIX}/qdbusxml2cpp4' >> $script
     echo 'export OE_QMAKE_QT_CONFIG=${SDKTARGETSYSROOT}/${OE_QMAKE_PATH_ARCHDATA}/mkspecs/qconfig.pri' >> $script
@@ -69,4 +73,6 @@ HostLibraries = ${@'${OE_QMAKE_PATH_LIBS}'.strip("/")}
 HostSpec = linux-oe-sdk-g++
 TargetSpec = linux-oe-sdk-g++
 EOF
+
+    cp ${SHELLSCRIPTPATH}/${QTCREATORSCRIPT} ${QTCREATORSCRIPTPATH}
 }
