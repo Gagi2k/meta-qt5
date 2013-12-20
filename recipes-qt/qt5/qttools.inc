@@ -16,3 +16,9 @@ SRC_URI += "file://0001-Allow-to-build-only-dbus-tools.patch"
 do_configure() {
     ${OE_QMAKE_QMAKE} ${OE_QMAKE_DEBUG_OUTPUT} -r ${S} CONFIG+=dbusonly
 }
+
+
+
+ALTERNATIVE_qttools-tools = "qdbus qdbusviewer"
+ALTERNATIVE_TARGET[qdbus] = "${OE_QMAKE_PATH_BINS}/qdbus"
+ALTERNATIVE_TARGET[qdbusviewer] = "${OE_QMAKE_PATH_BINS}/qdbusviewer"
