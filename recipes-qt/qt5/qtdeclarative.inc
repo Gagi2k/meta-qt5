@@ -1,6 +1,11 @@
 require qt5.inc
 
-DEPENDS += "qtjsbackend qtsvg qtxmlpatterns"
+SRC_URI += " \
+    file://0001-qmltestexample-fix-link.patch \
+    file://0003-Fix-wrong-calculation-of-viewPort-for-transitions.patch \
+"
+
+DEPENDS += "qtsvg qtxmlpatterns"
 
 ALTERNATIVE_qtdeclarative-tools = "qmlbundle qmlmin qmlscene qmltestrunner"
 ALTERNATIVE_TARGET[qmlbundle] = "${OE_QMAKE_PATH_BINS}/qmlbundle"

@@ -21,6 +21,26 @@ OE_QMAKE_PATH_SETTINGS = "${OE_QMAKE_PATH_QT_SETTINGS}"
 OE_QMAKE_PATH_EXAMPLES = "${OE_QMAKE_PATH_QT_EXAMPLES}"
 OE_QMAKE_PATH_TESTS = "${OE_QMAKE_PATH_QT_TESTS}"
 
+# If Qt5 (qtbase) is machine specific, then everything will be,
+# because the (initial) qtbase configuration becomes part of Qt5/qmake
+python __anonymous() {
+    barch = d.getVar("BUILD_ARCH", True) or ''
+    tarch = d.getVar("TARGET_ARCH", True) or ''
+    # do not do anything if we are building a native package
+    if barch != tarch:
+        tarch = d.getVar("QT_PACKAGES_ARCH", True) or ''
+        if tarch:
+            d.setVar("PACKAGE_ARCH", tarch)
+}
+
+
+# Regenerate header files when they are included in source tarball
+# Otherwise cmake files don't set PRIVATE_HEADERS correctly
+do_configure_prepend() {
+    rm -rf ${S}/include
+    mkdir -p ${S}/.git || true
+}
+
 PACKAGES =. "${PN}-qmlplugins-dbg ${PN}-tools-dbg ${PN}-plugins-dbg ${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-examples-dev ${PN}-examples-staticdev ${PN}-examples-dbg ${PN}-examples "
 
 # extra -dbg packages
@@ -57,6 +77,7 @@ FILES_${PN}-qmlplugins = " \
     ${OE_QMAKE_PATH_QML}/*/*/*/*.qmltypes \
     ${OE_QMAKE_PATH_QML}/*/*/*/*.qml \
     ${OE_QMAKE_PATH_QML}/*/*/*/*.js \
+    ${OE_QMAKE_PATH_QML}/*/*/*/*.png \
     ${OE_QMAKE_PATH_QML}/*/*/*/*/*${SOLIBSDEV} \
     ${OE_QMAKE_PATH_QML}/*/*/*/*/qmldir \
     ${OE_QMAKE_PATH_QML}/*/*/*/*/*.qmltypes \
