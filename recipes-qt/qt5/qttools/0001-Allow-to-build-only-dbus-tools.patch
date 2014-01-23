@@ -31,19 +31,29 @@ index c8756db..55287f1 100644
      no-png {
          message("Some graphics-related tools are unavailable without PNG support")
      } else {
-@@ -14,15 +14,15 @@ qtHaveModule(widgets) {
+@@ -14,22 +14,22 @@
      }
  }
  
 -SUBDIRS += linguist
+-!android|android_app: SUBDIRS += qtpaths
 +!dbusonly:SUBDIRS += linguist
++!dbusonly:!android|android_app: SUBDIRS += qtpaths
  
 -mac {
 +!dbusonly:mac {
      SUBDIRS += macdeployqt
  }
  
+-android {
++!dbusonly:android {
+     SUBDIRS += androiddeployqt
+ }
+ 
  qtHaveModule(dbus): SUBDIRS += qdbus
+ 
+-win32|winrt:SUBDIRS += windeployqt
++!dbusonly:win32|winrt:SUBDIRS += windeployqt
  
 -qtNomakeTools( \
 +!dbusonly:qtNomakeTools( \
@@ -61,3 +71,5 @@ index 85e4f3a..1637ecf 100644
 -- 
 1.8.5
 
+--- src.pro.org	2014-01-23 15:15:39.783527733 +0100
++++ src.pro	2014-01-23 15:18:04.535862059 +0100
