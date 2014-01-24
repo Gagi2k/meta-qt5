@@ -16,4 +16,6 @@ RDEPENDS_${PN} += " \
          qtmultimedia-qmlplugins \
          qtwebkit \
          qtwebkit-qmlplugins \
+         qtsvg \
+         qtsvg-plugins \
          "
