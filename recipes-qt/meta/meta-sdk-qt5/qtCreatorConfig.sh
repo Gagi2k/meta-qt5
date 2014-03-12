@@ -43,6 +43,10 @@ qmake=$OE_QMAKE_QMAKE
 gdb=`which arm-bistro-linux-gnueabi-gdb`
 sysroot=$SDKTARGETSYSROOT
 
+if [ -z "$sysroot" ]; then
+    sysroot=$OECORE_TARGET_SYSROOT
+fi
+
 if [ $removeMode -eq 0 ]; then
 
     $qtCreatorBinPath/sdktool addTC --id "$toolchainId" --name "$name" --abi $abi --path $compiler
